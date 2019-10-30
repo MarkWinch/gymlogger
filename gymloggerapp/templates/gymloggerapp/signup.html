@@ -1,0 +1,105 @@
+{% load widget_tweaks %}
+
+<html>
+    <head>
+        <title>Gym Logger</title>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
+        <style>
+            @import url('https://www.fontify.me/wf/96271c1ee25ea649229e08ebbdaf8408');
+            body {
+                  background-color: #F7F7F7;
+                  margin: 0; 
+                  height: 100%; 
+                  overflow: hidden
+                  }
+
+            .main-card {
+              border: 0.8px solid #dbdbdb;
+              height: 410px;
+              width: 350px;
+              margin-bottom: 10px;
+              margin-top: 15px;
+            }
+
+            .title {
+              font-family: font85956;
+              font-size: 30px;
+              font-style: italic;
+              margin-bottom: 50px;
+            }
+
+            .signup-button {
+              border: none;
+              color: white;
+              font-weight: bold;
+              font-size: 14px;
+              background-color: #5a5afa;
+              border-radius: 4px;
+              width: 250px;
+              height: 28px;
+              margin-bottom: 45px;
+            }
+
+            .second-card {
+              border: 0.8px solid #dbdbdb;
+              height: 60px;
+              width: 350px;
+            }
+
+            .log-in{
+              font-weight: bold;
+            }
+
+            .field {
+              text-indent: 8px;
+              background-color: #f0f0f0;
+              width: 250px;
+              height: 30px;
+              border-radius: 4px;
+              border: 0.8px solid #dbdbdb
+            }
+
+            .field::placeholder {
+              font-size: 13px;
+
+            }
+
+            
+
+    
+        </style>
+        
+    </head>
+    <body>
+
+            <div class="card shadow-none text-center mx-auto main-card">
+              <div class="card-body">
+                <h2 class="title">gymlogger</h2>
+                <form method="POST">{% csrf_token %}
+                   <p>{% render_field form.username class+="field" placeholder="Username"%}</p>
+                   <p>{% render_field form.email class+="field" placeholder="Email"%}</p>
+                   <p>{% render_field form.password1 class+="field" placeholder="Password"%}</p>
+                   <p>{% render_field form.password2 class+="field" placeholder="Confirm password"%}</p>
+                  <button type="submit" value="Sign up" class="signup-button"/>Sign up</button>
+                </form> 
+              </div>
+            </div>
+
+            <div class="card shadow-none text-center mx-auto second-card">
+              <div class="card-body" />
+                Return to <a href="{% url 'login' %}" class="log-in">Log in</a>
+              </div>
+            </div>
+            
+       
+
+         
+      
+    </body>
+</html>

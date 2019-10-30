@@ -1,0 +1,175 @@
+{% load widget_tweaks %}
+
+<html>
+    <head>
+        <title>Gym Logger</title>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
+        <style>
+            @import url('https://www.fontify.me/wf/96271c1ee25ea649229e08ebbdaf8408');
+            body {
+                  background-color: #F7F7F7;
+                  margin: 0; 
+                  height: 100%; 
+                  overflow: hidden
+                  }
+
+            .weight, .reps {
+               
+              margin: 10px;
+              width: 50px;
+
+              box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                border: 1px solid #C2C2C2;
+                box-shadow: 1px 1px 4px #EBEBEB;
+                -moz-box-shadow: 1px 1px 4px #EBEBEB;
+                -webkit-box-shadow: 1px 1px 4px #EBEBEB;
+                border-radius: 3px;
+                -webkit-border-radius: 3px;
+                -moz-border-radius: 3px;
+                padding: 7px;
+                outline: none;
+            }
+
+            .modal-header {
+              background: #DA3925;
+            }
+
+            .weight:focus,
+            .reps:focus {
+                box-shadow: 0 2px 12px 0 rgba(0,0,0,0.16),0 0 0 1px #86a4f0 !important;
+            }
+
+           input[type="checkbox"] {
+             width:25px; height:25px;
+           }
+
+           .main-form{
+            position: relative;
+            left: 1000px;
+           }
+
+            
+           .weight
+                   {
+            position: relative;
+            right: 960px;
+            top: 20px;
+           }
+
+           .btn-default {
+            position: relative;
+            right: 830px;
+            bottom: 2px;
+            width: 140px;
+            height: 40px;
+            padding: 0px;
+            background-color: black !important;
+           }
+
+           .hr-line {
+            position: relative;
+            right: 1000px;
+            top: 20px;
+           }
+
+           .reps {
+            position: relative;
+            right: 915px;
+            top: 20px;
+           }
+
+           .delete {
+            position: relative;
+            right: 910px;
+            top: 26px;
+
+           }
+
+           .weight-label {
+            position: relative;
+            right: 975px;
+            bottom: 20px;
+            font-weight: bold;
+            display: inline;
+           }
+
+           .reps-label {
+            position: relative;
+            right: 860px;
+            bottom: 20px;
+            font-weight: bold;
+            display: inline;
+           }
+
+           .delete-label {
+            position: relative;
+            right: 708.5px;
+            bottom: 60px;
+            display: inline;
+           }
+
+           .redirect-button {
+            position: relative;
+            right: 2000px;
+           }
+
+    
+        </style>
+        <script type="text/javascript">
+            $(window).on('load',function(){
+                $('#basicExampleModal').modal('show');
+            });
+        </script>
+        
+    </head>
+    <body>
+
+         <div class="modal" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+           aria-hidden="true">
+           <div class="modal-dialog" role="document">
+             <div class="modal-content">
+               <div class="modal-header">
+                 <h5 class="modal-title" id="exampleModalLabel"><strong>Edit sets | </strong>{{exercisename}} | {{edit_date}}</h5>
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                   <span aria-hidden="true">&times;</span>
+                 </button>
+               </div>
+               <form method="post" class="main-form">{% csrf_token %}
+                {{ formset.management_form }}
+               {% for form in formset reversed%}
+                 {% for set in set_list %}
+                  {% if set.pk == form.instance.id %}
+                   <div class="modal-body">
+                              {{form}}
+                              <p class="weight-label">Weight:</p> 
+                              <p class="reps-label">Reps:</p>
+                              <h6 class="delete-label">Delete</h6>
+                              <hr class="hr-line">
+                   </div>
+                 {% endif %}
+                {% endfor %}
+               {% endfor %}   
+                  <button type="submit" class="save btn btn-default" id="save-changes">Save changes</button>
+             </form>
+           </div>
+         </div>
+
+         <a href="{% url 'set_forms' exercisegroup_id=exercisename.pk %}"><button type="button" class="redirect-button" id="redirect">redirect</button></a>
+
+         <script type="text/javascript">
+             $('#basicExampleModal').on('hide.bs.modal', function () {
+                $("#redirect").trigger("click");
+             });
+         </script>
+      
+    </body>
+</html>

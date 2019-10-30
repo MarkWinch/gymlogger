@@ -1,0 +1,361 @@
+{% load widget_tweaks %}
+
+<html>
+    <head>
+        <title>Gym Logger</title>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
+        <style>
+            @import url('https://www.fontify.me/wf/96271c1ee25ea649229e08ebbdaf8408');
+            body {
+                  background-color: #F7F7F7;
+                  margin: 0; 
+                  height: 100%; 
+                  overflow: hidden
+                  }
+            .main-header {
+                  background: #DA3925;
+                  padding-bottom: 30px;
+                  color: white;
+                  height:70px;
+                  border-bottom: 0.8px solid black;
+                  }
+
+            .main-header-text{
+              font-family: font85956;
+              font-size: 30px;
+              font-style: italic;
+              position: relative;
+              left: 20px;
+              top: 12px;
+            }
+
+            .example-1 {
+            width: 350px;
+            height: 586.4px; 
+            }
+
+            .scrollbar-ripe-malinka::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+            background-color: #F5F5F5;
+            border-radius: 4px; }
+
+            .scrollbar-ripe-malinka::-webkit-scrollbar {
+            width: 5px;
+            background-color: #F5F5F5; }
+
+            .scrollbar-ripe-malinka::-webkit-scrollbar-thumb {
+            border-radius: 5px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+            background-color: #F2161D; }
+
+            .exercise-cards {
+            border-bottom: 0.8px solid black !important;
+            border-right: 0.8px solid black;
+            position: relative;
+            bottom: 30px;
+            right: 113px;
+            margin: 30px 0 30px 112px;
+            display: inline-block;
+            background-color: red;
+            }
+
+            .first-header {
+              background-color: #DA3925;
+              height: 55px;
+            }
+
+            .second-header {
+            background-color: #f2f2f2;
+            height: 250px;
+
+            }
+
+            .card-body {
+            overflow-y: scroll;
+            background-color: white;
+            font-size:15px
+            }
+
+            .second-formset {
+              /*position: relative;
+              bottom: 400px;
+              left: 400px;*/
+            }
+
+            .today-sets {
+              text-indent:48px
+            }
+
+            .second-cardsclass {
+              position: relative;
+              left: 238px;
+              bottom: 693px;
+              border-bottom: 0.8px solid black;
+            }
+
+            .part-2 {
+              width: 1015px;
+              height: 586px;
+            }
+
+            .part-3-body {
+              background-color: #F7F7F7;
+            }
+
+            .within-card {
+              display: inline-block;
+              margin-bottom: 23px;
+              margin-right: 50.5px;
+              
+              
+            }
+
+            .within-body {
+              background-color: white;
+              border-style: solid;
+              border-width: 0.5px;
+              border-color: #dadada;
+              overflow-y: visible;
+              
+            }
+
+
+            .within-dimensions {
+              width: 270px;
+              min-height: 250px;
+              position: relative;
+              left: 30px;
+              
+            }
+
+            .scrollbar-ripe-invisible::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+            background-color: #F5F5F5;
+            border-radius: 0px; }
+
+            .scrollbar-ripe-invisible::-webkit-scrollbar {
+            width: 0px;
+            background-color: #F5F5F5; }
+
+            .scrollbar-ripe-invisible::-webkit-scrollbar-thumb {
+            border-radius: 0px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+            background-color: #F2161D; }
+
+            .sets-class {
+              display: inline-block;
+              vertical-align: top;
+              
+
+            }
+
+             
+
+             .main-formset {
+              position: absolute;
+              right: 150px;
+              top: 1em;
+             }
+
+             .position-card {
+              display: inline-block;
+              z-index: 1;
+             }
+
+             .btn-default {
+              position: relative;
+              bottom: 9.5px;
+              left: 100px;
+              width: 70px;
+              height: 32px;
+              background-color: black !important;
+              padding: 0px;
+             }
+
+             .nav-link {
+              display: inline-block;
+              font-size: 18px;
+              font-weight: normal;
+              color: white;
+              font-style: italic;
+              position: relative;
+              left: 50px;
+             }
+
+             .css_class_1 {
+              border-radius: 4px;
+              background-color: #dcdedc;
+             }
+
+             .date {
+              border-radius: 4px;
+              background-color: #dcdedc;
+             }
+
+             .weight, .reps {
+              width: 75px;
+              box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                border: 1px solid #C2C2C2;
+                box-shadow: 1px 1px 4px #EBEBEB;
+                -moz-box-shadow: 1px 1px 4px #EBEBEB;
+                -webkit-box-shadow: 1px 1px 4px #EBEBEB;
+                border-radius: 3px;
+                -webkit-border-radius: 3px;
+                -moz-border-radius: 3px;
+                padding: 7px;
+                outline: none;
+             }
+
+             .reps {
+              position: relative;
+              left: 14px;
+             }
+
+             .no-sets{
+              position: relative;
+              top: 200px;
+              color: grey;
+             }
+
+             .dropdown {
+               display: inline-block;
+             }
+
+             .dropdown-toggle {
+               font-size: 40px;
+               padding: 0px;
+               color: white;
+               position: relative;
+               left: 1200px;
+               bottom: 20px;
+             }
+
+             .logged-in {
+               font-size: 15px;
+               position: relative;
+               left: 641.5px;
+             }
+
+        </style>
+    </head>
+    <body>
+        <div class="main-header">
+            <h1 class="main-header-text"><a href="{% url 'name_list' %}" style="color: inherit;">gymlogger</a><a class="nav-link" href="{% url 'graph_page' exercisegroup_id=exercisename.pk %}">Graph sets</a><span class="logged-in">Logged in as: {{username}}</span></h1>
+            <div class="dropdown show">
+              <a class="dropdown-toggle" href="#" style="color: inherit;" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              </a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="{% url 'user_settings_edit_profile' %}">Settings</a>
+                <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
+              </div>
+            </div>
+        </div>
+
+        <form method="post">{% csrf_token %}
+          {{ formset.management_form }}
+         <div class="exercise-cards">
+            <div class="card shadow-none example-1">
+              <div class="card-header first-header">
+                <strong>{{exercisename}} |</strong>
+                Muscle group: {{exercisename.muscle_group.muscle}}
+              </div>
+              <div class="card-header second-header">
+                <p><strong>Add sets</strong></p>
+                <form method="post">{% csrf_token %}
+                 {{ formset.management_form }}
+                 {{ formset.as_p }}
+                </form>
+                <button type="submit" class="save btn btn-default">Add set</button>
+              </div>
+              <div class="card-body scrollbar-ripe-malinka">
+                <b>Sets added today</b>
+                <hr>
+                <div class="today-sets">
+                  {% for set in sets reversed%}
+                   {% if set.date == date_created %}
+                    <p>{{set.weight}}kg x {{set.reps}} reps</p>
+                   {% endif %}
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+           </div>
+
+           <div class="exercise-cards second-cardsclass">
+              <div class="card shadow-none example-1 part-2">
+                <div class="card-body scrollbar-ripe-malinka part-3-body">
+                  <form method="get">
+                    {{ formset.management_form }}
+                  <b>Sets from: </b> {% render_field form.month class+="css_class_1" %}
+                       {% render_field form.year class+="css_class_1" %} 
+                    </form> 
+                  <hr>
+
+                  <p class="text-center no-sets">{{no_set_message}}</p>
+                  
+                   {% for group in all_set_groups reversed %}
+                     {% if month in group.0 and year in group.0 or month == 'All months' and year == 'All years' or month in group.0 and year == 'All years' or month == 'All months' and year in group.0 %}
+                     <div class="position-card">
+                      <div id="target" class="view overlay sets-class">
+                       <a href="{% url 'edit_sets' exercisegroup_id=exercisename.pk setgroup_id=group.1 %}" style="color: inherit;">
+                        <div class="within-card">
+                          <div class="card shadow-none within-dimensions"> 
+                              <div class="card-body scrollbar-ripe-invisible within-body">
+                                  <b>{{ group.1 }}</b>
+                                  <hr>
+                                  <div>
+                                    {% for set in group.2 reversed%}
+                                      <p>{{set.weight}}kg x {{set.reps}} reps</p>
+                                    {% endfor %}
+                                  </div>
+                              </div>
+                              <div class="mask flex-center rgba-red-strong">
+                                <p class="white-text">Edit sets</p>
+                              </div>
+                          </div>
+                         </div>
+                        </a>
+                       </div>
+                      </div>
+                      
+                     {% endif %}
+                    {% endfor %}
+                  
+
+                </div>
+              </div>
+             </div>
+
+          
+
+           
+           <!--div class="second-formset">
+             <form method="post">{% csrf_token %}
+                  <table>
+                     {% for form in formset %}
+                       {{ form.instance.id }}
+                     {% endfor %}
+                  </table>
+                  <button type="submit" class="save btn btn-default">Save set</button>
+             </form>
+           </div-->
+
+
+          
+         </form>
+
+        
+        
+
+
+    </body>
+</html>
