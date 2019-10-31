@@ -1,4 +1,3 @@
-{% load static %}
 {% load widget_tweaks %}
 
 <html>
@@ -12,9 +11,100 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <link rel="stylesheet" href="{% static 'css/name_list.css' %}">
         <style>
             @import url('https://www.fontify.me/wf/96271c1ee25ea649229e08ebbdaf8408');
+            .scrollbar-ripe-malinka::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+            background-color: #F5F5F5;
+            border-radius: 10px; }
+
+            .scrollbar-ripe-malinka::-webkit-scrollbar {
+            width: 12px;
+            background-color: #F5F5F5; }
+
+            .scrollbar-ripe-malinka::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+            background-color: #F5F5F5; }
+
+            .example-1 {
+            position: relative;
+            overflow-y: scroll;
+            height: 330px;
+            width: 300px; 
+            }
+
+            .exercise-cards {
+            margin: 30px 0 30px 112px;
+            display: inline-block;
+            }
+
+            .btn-light {
+              line-height: 15px;
+              border-radius: 40px;
+              transition: all 0.3s ease 0s;
+              background: #F2161D !important;
+              color: white !important;
+            }
+
+            .btn-add{
+            position: relative;
+            right: 5.4px;
+            width: 149px; 
+            font-size: 0.85em;
+            background: #2BBBAD;
+            color: white;
+            padding: 18px 7px 18px 7px;
+            }
+
+            .btn-graph {
+            position: relative;
+            right: 16px;
+            width: 146px; 
+            font-size: 0.85em;
+            background: #2BBBAD;
+            color: white;
+            padding: 18px 7px 18px 7px;
+            }
+
+            .main-header {
+            font-family: Arial;
+            background: #F2161D;
+            padding-bottom: 30px;
+            color: white;
+            }
+
+            .second-header {
+            background: white;
+            height: 60px;
+            box-shadow: 0 8px 8px -8px rgba(0, 0, 0, 0.2)
+            }
+
+            .headers {
+            position: sticky;
+            z-index: 1;
+            top: 0;
+            }
+
+            .no-exercises {
+            position: absolute;
+                width: 400px;
+                height: 50px;
+                top: 50%;
+                left: 50%;
+                margin-left: -200px; /* margin is -0.5 * dimension */
+                margin-top: -25px; 
+            }
+
+            .auto-submit{
+            position: absolute;
+            bottom: 18px;
+            left: 1020px;
+            font-size: 0.5em;
+            padding: 0px;
+            margin: 0px;
+            }
+            
             body {
                   background-color: #F7F7F7;
                   /*margin: 0; 
@@ -182,7 +272,7 @@
     <body>
        <div class="headers">
         <div class="main-header">
-            <h1 class="main-header-text"><a href="{% url 'name_list' %}" style="color: inherit;">test</a><span class="logged-in">Logged in as: {{username}}</span></h1>
+            <h1 class="main-header-text"><a href="{% url 'name_list' %}" style="color: inherit;">gymlogger</a><span class="logged-in">Logged in as: {{username}}</span></h1>
             <div class="dropdown show">
               <a class="dropdown-toggle" href="#" style="color: inherit;" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               </a>
