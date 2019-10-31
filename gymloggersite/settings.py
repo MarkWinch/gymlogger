@@ -33,6 +33,7 @@ ALLOWED_HOSTS =  ["gymlogger.pythonanywhere.com"]
 
 INSTALLED_APPS = [
     
+    'widget_tweaks',
     'gymloggerapp',
     'django.contrib.auth',
     'django.contrib.admin',
@@ -40,8 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
-    'widget_tweaks',
+   
 ]
 
 MIDDLEWARE = [
